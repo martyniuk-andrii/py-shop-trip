@@ -1,10 +1,9 @@
-from dataclasses import dataclass
 from typing import Any
 
 
-@dataclass
 class Car:
-    _characteristics_of_the_car: dict[str, Any]
+    def __init__(self, characteristics_of_the_car: dict[str, Any]) -> None:
+        self._characteristics_of_the_car = characteristics_of_the_car
 
     def brand_car(self) -> str:
         return self._characteristics_of_the_car["brand"]

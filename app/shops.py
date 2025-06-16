@@ -1,12 +1,17 @@
 import math
-from dataclasses import dataclass
 
 
-@dataclass
 class Shop:
-    _name: str
-    _location: tuple[int, int]
-    _products: dict[str, float]
+    def __init__(
+            self,
+            name: str,
+            location: tuple[int, int],
+            products: dict[str, float]
+    ) -> None:
+
+        self._name = name
+        self._location = location
+        self._products = products
 
     def __hash__(self) -> int:
         return hash(self._name)

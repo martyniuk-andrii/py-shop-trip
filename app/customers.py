@@ -1,15 +1,20 @@
-from dataclasses import dataclass
-
 from app.car import Car
 
 
-@dataclass
 class Customer:
-    _name: str
-    _product_cart: dict[str, int]
-    _location: tuple[int, int]
-    _money: float
-    _car: Car
+    def __init__(
+            self,
+            name: str,
+            product_cart: dict[str, int],
+            location: tuple[int, int],
+            money: float,
+            car: Car
+    ) -> None:
+        self._name = name
+        self._product_cart = product_cart
+        self._location = location
+        self._money = money
+        self._car = car
 
     @property
     def name(self) -> str:
