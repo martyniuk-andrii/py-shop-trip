@@ -70,7 +70,7 @@ def shop_trip() -> None:
 
             costs_of_purchased_products = 0
             for product, cost in customer.product_cart.items():
-                total = cheapest_store.products[product] * cost
+                total = float(cheapest_store.products[product] * cost)
                 print(
                     f"{cost} {product}s for "
                     f"{int(total) if total.is_integer() else total} dollars"
