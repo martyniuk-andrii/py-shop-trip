@@ -6,7 +6,7 @@ from dataclasses import dataclass
 class Shop:
     _name: str
     _location: tuple[int, int]
-    _products: dict[str, int | float]
+    _products: dict[str, float]
 
     def __hash__(self) -> int:
         return hash(self._name)

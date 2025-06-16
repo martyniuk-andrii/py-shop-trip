@@ -78,11 +78,11 @@ def shop_trip() -> None:
             print(f"Total cost is {costs_of_purchased_products} dollars")
 
             customer.spend(costs_of_purchased_products)
+            customer.spend(cheapest_store_path)
 
             print("See you again!\n")
             print(f"{customer.name} rides home")
 
             customer.location = customer_home_location
-            customer.spend(cheapest_store_path)
 
             print(f"{customer.name} now has {customer.money} dollars\n")
