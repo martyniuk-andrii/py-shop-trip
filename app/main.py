@@ -36,10 +36,10 @@ def shop_trip() -> None:
                     distance_to_shop, fuel_price
                 )
                 total_price = shop.products_cost(customer.product_cart)
-                trip_total_cost = round(road_price * 2 + total_price, 2)
+                trip_total_cost = round(road_price + total_price, 2)
                 prices[shop] = {
-                    "costs": trip_total_cost,
-                    "road_price": road_price * 2
+                    "total_costs": trip_total_cost,
+                    "road_price": road_price
                 }
                 print(
                     f"{customer.name}'s trip to the {shop.name} "
@@ -47,13 +47,11 @@ def shop_trip() -> None:
                 )
 
             cheapest_store = min(
-                prices, key=lambda shop: prices[shop]["costs"]
+                prices, key=lambda shop: prices[shop]["total_costs"]
             )
             cheapest_store_path = prices[cheapest_store]["road_price"]
 
-            if customer.money < (
-                    prices[cheapest_store]["costs"] + cheapest_store_path
-            ):
+            if customer.money < (prices[cheapest_store]["total_costs"]):
                 print(
                     f"{customer.name} doesn't have enough money "
                     f"to make a purchase in any shop"

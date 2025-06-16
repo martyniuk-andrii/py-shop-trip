@@ -5,7 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class Shop:
     _name: str
-    _location: list[int]
+    _location: tuple[int, int]
     _products: dict[str, int | float]
 
     def __hash__(self) -> int:
@@ -19,7 +19,7 @@ class Shop:
         return self._name
 
     @property
-    def location(self) -> list[int]:
+    def location(self) -> tuple[int, int]:
         return self._location
 
     @property
@@ -38,7 +38,7 @@ class Shop:
             total += product_price * number_of_products
         return total
 
-    def distance_to_shop(self, customer_location: list[int]) -> float:
+    def distance_to_shop(self, customer_location: tuple[int, int]) -> float:
         distance = math.sqrt(
             (self.location[0] - customer_location[0]) ** 2
             + (self.location[1] - customer_location[1]) ** 2
