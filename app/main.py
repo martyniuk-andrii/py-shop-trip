@@ -39,7 +39,7 @@ def shop_trip() -> None:
                 trip_total_cost = round(road_price * 2 + total_price, 2)
                 prices[shop] = {
                     "costs": trip_total_cost,
-                    "road_price": road_price
+                    "road_price": road_price * 2
                 }
                 print(
                     f"{customer.name}'s trip to the {shop.name} "
@@ -49,8 +49,11 @@ def shop_trip() -> None:
             cheapest_store = min(
                 prices, key=lambda shop: prices[shop]["costs"]
             )
+            cheapest_store_path = prices[cheapest_store]["road_price"]
 
-            if customer.money < prices[cheapest_store]["costs"]:
+            if customer.money < (
+                    prices[cheapest_store]["costs"] + cheapest_store_path
+            ):
                 print(
                     f"{customer.name} doesn't have enough money "
                     f"to make a purchase in any shop"
@@ -59,10 +62,7 @@ def shop_trip() -> None:
 
             print(f"{customer.name} rides to {cheapest_store.name}\n")
 
-            cheapest_store_path = prices[cheapest_store]["road_price"]
-
             customer.location = cheapest_store.location
-            customer.spend(cheapest_store_path)
 
             print("Date: 04/01/2021 12:33:41")
             print(f"Thanks, {customer.name}, for your purchase!")
@@ -78,7 +78,9 @@ def shop_trip() -> None:
                 costs_of_purchased_products += total
 
             print(f"Total cost is {costs_of_purchased_products} dollars")
+
             customer.spend(costs_of_purchased_products)
+
             print("See you again!\n")
             print(f"{customer.name} rides home")
 

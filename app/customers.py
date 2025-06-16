@@ -7,8 +7,8 @@ from app.car import Car
 class Customer:
     _name: str
     _product_cart: dict[str, int]
-    _location: list[int, int]
-    _money: (int, float)
+    _location: list[int]
+    _money: int | float
     _car: Car
 
     @property
@@ -20,11 +20,11 @@ class Customer:
         return self._product_cart
 
     @property
-    def location(self) -> list[int, int]:
+    def location(self) -> list[int]:
         return self._location
 
     @location.setter
-    def location(self, new_location: list[int, int]) -> None:
+    def location(self, new_location: list[int]) -> None:
         if (
                 len(new_location) == 2
                 and all(isinstance(x, int) for x in new_location)

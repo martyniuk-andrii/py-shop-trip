@@ -13,5 +13,5 @@ class Car:
         return self._characteristics_of_the_car["fuel_consumption"]
 
     def road_price(self, distance: float, fuel_price: float) -> float:
-        distance_per_liter = self.fuel_consumption() / 100 * distance
+        distance_per_liter = (distance / 100) * self.fuel_consumption()
         return distance_per_liter * fuel_price
